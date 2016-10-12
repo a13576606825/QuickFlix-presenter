@@ -1,0 +1,98 @@
+.max-space {
+	/*opacity : 1;*/
+
+	display: block;
+	max-width: 100%;
+	min-height:80%;
+	background-image: url('../img/top-movies.jpg');
+	/*background-color: rgba(0,0,0,0.5);*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+
+}
+
+/*Sets the text hover color on navbar*/
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+	color: #ff6666;
+}
+/*Sets the text color on navbar*/
+.navbar-default .navbar-nav > li > a{
+	color: #0099cc;
+}
+.navbar-default .navbar-nav > .active > a{
+	color: #ff6666;
+	background: none;
+	box-shadow: none;
+}
+
+.navbar {
+	margin-bottom: 0px;
+	background: white;
+}
+
+/* custom logo class in nav */
+.nav-logo {
+	margin: 0px 20px 0px 35px;
+	height: 50px;
+}
+
+/*Set content width to full screen*/
+html, body{
+    height:100%;
+    min-width: 300px;
+}
+
+#content {
+	height: 100%;
+}
+
+
+.pic-title {
+
+	position: bottom;
+	margin-top: 10%;
+	width: 100%;
+	background-color:rgba(0,0,0,0.5);
+	position: absolute;
+}
+.pic-title p {
+	color: white;
+	margin-left: 5%;
+}
+.pic-title h1 {
+	color: white;
+	margin-left: 5%;
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.footer-container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+.footer-container .text-muted {
+  margin: 20px 0;
+}
+
+
+/* BLOG */
+.grey-space {
+	width: 100%;
+	background-color: #fafafa;
+	height: 20%;
+
+}
+.page-header-space {
+	top: 25%;
+	height: 50%;
+	font-family: 'Open Sans Condensed', Helvetica, sans-serif;
+	font-color: black;
+}
