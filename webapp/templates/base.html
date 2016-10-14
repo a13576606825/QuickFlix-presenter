@@ -46,16 +46,15 @@
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 							{% if query%}
-
 							<div class="navbar-form navbar-left">
 
 								<div class="input-group">
 									<div class="form-group has-feedback has-clear">
-										<input type="text" style='width:400px' class=" form-control searchInput" value={{query}} placeholder="Movie Title">
+										<input type="text" style='width:400px' class=" form-control searchInput" value="{{query | e}}" placeholder="Movie Title">
 										<span class="form-control-clear glyphicon glyphicon-remove form-control-feedback hidden"></span>
 									</div>
 									<span class="input-group-btn">
-										<button type="button" class="submitSearch btn btn-info" id="exampleButton1">Search</button>
+										<button type="button" class="submitSearch btn btn-default" id="exampleButton1">Search</button>
 									</span>
 								</div>
 							</div>
@@ -97,6 +96,10 @@
 			$(this).siblings('input[type="text"]').val('')
 			.trigger('propertychange').focus();
 		});
+		function go(url) {
+			var win = window.open(url, '_blank');
+		}
+
 		$(document).on('click', '.submitSearch', function() {
 			var query = $('.searchInput').first().val();
 			if(query!=null && query.trim()!='') {

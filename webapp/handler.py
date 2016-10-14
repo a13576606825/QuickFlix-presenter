@@ -11,10 +11,13 @@ to Flask.
 """
 
 import logging
-
 from flask import jsonify, request, redirect, Response, render_template, url_for
 
+from HTMLParser import HTMLParser
+
+
 from app import app
+import core
 
 log = logging.getLogger(__name__)
 
@@ -29,9 +32,17 @@ def show_homepage():
 
 @app.route('/result', methods=["GET"])
 def show_result():
-	query = request.args.get('query')
+	query = request.args.get('query').strip()
+	log.info(query)
+	isBlur, matched, similarity = core.blur_match(query)
+	results = core.retrieveResult(matched)
+
+
 	data = {
 		'query':query,
-		
+		'isBlur': isBlur,
+		'matched': matched,
+		'similarity': similarity,
+		'results': results,
 	}
 	return render_template('result.html', **data)

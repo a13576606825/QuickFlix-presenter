@@ -25,7 +25,7 @@
 * **Database**: MongoDB
 * **Others**:
   * pymongo==3.0.1
-	* PyYaml==3.11
+  * PyYaml==3.11
   * Requests==2.9.1
   * WerkZeug==0.10.4
   * Jinja2==2.7.3
@@ -40,5 +40,6 @@
 2. **docstrings**: surround by ''' ''' or """ """.
 
 #####Naming
-1. **function_name and variable_Name**: lowercase, with words separated by underscores.
-2. **CONSTANT_NAME**: all capital letters with words underscores separated by underscores.
+1. **function_name**: lowercase, with words separated by underscores.
+2. **variableName**: start with lower case.
+3. **CONSTANT_NAME**: all capital letters with words underscores separated by underscores.

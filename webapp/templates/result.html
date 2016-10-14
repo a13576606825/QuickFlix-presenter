@@ -1,13 +1,53 @@
 {% extends "base.html" %}
 {% block title %}Result{% endblock %}
 {% block head %}
-    {{ super() }}
+{{ super() }}
 {% endblock %}
 {% block content %}
-	<div class='max-space'>
-
-    
+<div class='max-space'>
+  {% if results|length>0 and isBlur %}
+  <div class="alert alert-info" role="alert">
+    Note: Do you mean <strong>{{matched | e}}</strong> instead of <strong>{{query | e}}</strong>[{{similarity}}]?
   </div>
+  {% endif %}
+  <div class='container result-space'>
+    <div class='row'>
+      <div class='col-lg-8 col-md-10'>
+
+        {% for result in results %}
+          {%if loop.first%}
+          <div class='hori-divider'>
+            Found <strong>{{results|length}}</strong>
+              {% if results|length > 1 %}results{% else %}result{% endif %}
+          </div>
+          {% endif%}
+          <div onclick="go('{{result.url}}')" class='result-entry'>
+            <div class='result-header'>
+              <a href="{{result.url}}">
+                {{result.title}} | {{result.domain}}
+              </a>
+            </div>
+            <p>{{result.descripton}}</p>
+          </div>
+        {% else %}
+        <div class='empty-result'>
+          <h3>We could not match any documents for your search - <span class="label label-info">{{query | e}}</span></h3>
+          <br/>
+          <strong>Suggestions</strong>:
+          <br/>
+          - Make sure that all words are spelled correctly.
+          <br/>
+          - Try different movies.
+          <br/>
+        </div>
+
+        {% endfor %}
+      </div>
+      <div class='col-lg-4 vert-divider'>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 {% endblock %}
