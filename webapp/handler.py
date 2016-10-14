@@ -26,3 +26,12 @@ def hello_world():
 def show_homepage():
 	data = {}
 	return render_template('home.html', **data)
+
+@app.route('/result', methods=["GET"])
+def show_result():
+	query = request.args.get('query')
+	data = {
+		'query':query,
+		
+	}
+	return render_template('result.html', **data)

@@ -1,10 +1,23 @@
-.max-space {
+.max-space-with-pic {
 	/*opacity : 1;*/
 
 	display: block;
 	max-width: 100%;
 	min-height:80%;
 	background-image: url('../img/top-movies.jpg');
+	/*background-color: rgba(0,0,0,0.5);*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+
+}
+
+.max-space {
+	/*opacity : 1;*/
+
+	display: block;
+	max-width: 100%;
+	min-height:80%;
 	/*background-color: rgba(0,0,0,0.5);*/
     background-size: cover;
     background-repeat: no-repeat;
@@ -95,4 +108,15 @@ html, body{
 	height: 50%;
 	font-family: 'Open Sans Condensed', Helvetica, sans-serif;
 	font-color: black;
+}
+
+
+::-ms-clear {
+  display: none;
+}
+
+.form-control-clear {
+  z-index: 10;
+  pointer-events: auto;
+  cursor: pointer;
 }
