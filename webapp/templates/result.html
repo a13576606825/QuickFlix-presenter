@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 <div class='max-space'>
-  {% if results|length>0 and isBlur %}
+  {% if isBlur %}
   <div class="alert alert-info" role="alert">
     Note: Do you mean <strong>{{rankedMovieTitles[0].title | e}}</strong> instead of <strong>{{query | e}}</strong>[{{rankedMovieTitles[0].rank}}]?
     <br/>Here are other suggestions:
@@ -28,10 +28,10 @@
           <div onclick="go('{{result.url}}')" class='result-entry'>
             <div class='result-header'>
               <a href="#">
-                {{result.title}} | {{result.domain}}
+                {{result.itemReviewed.name}} | {{result.publisher.name}}
               </a>
             </div>
-            <p>{{result.descripton}}</p>
+            <p>{{result.description}}</p>
           </div>
         {% else %}
         <div class='empty-result'>

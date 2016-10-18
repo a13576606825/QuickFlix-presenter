@@ -1,6 +1,8 @@
 import logging
 from difflib import SequenceMatcher
 
+from store.read import get_movies, get_reviews
+
 log = logging.getLogger(__name__)
 
 def similar(a, b):
@@ -17,7 +19,7 @@ def blur_match(query):
     '12 Angry Men',
     'Pulp Fiction',
     'The Lord Of The Rings: The Return Of The King']
-
+    movieTitleList = get_movies()
     rankedMovieTitles = []
     for title in movieTitleList:
         rankedMovie = {'title': title, 'rank': similar(query, title)}
@@ -39,6 +41,7 @@ def retrieveResult(title):
 
     {'title':'The Magnificent Seven review', 'domain':'Metacritic', 'url':"https://www.theguardian.com/film/2016/sep/22/the-magnificent-seven-review-denzel-washington", 'descripton':"Antoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-style take on the 1960 western has a starry cast, from Denzel Washington to Ethan Hawke, but his gunslingers ..."},
     ]
+    return get_reviews(title)
     for i in range(10):
         results.append(a)
     return results

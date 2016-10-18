@@ -35,7 +35,7 @@ def show_result():
 	query = request.args.get('query').strip()
 	log.info(query)
 	isBlur, rankedMovieTitles = core.blur_match(query)
-	results = core.retrieveResult(rankedMovieTitles[0])
+	results = core.retrieveResult(rankedMovieTitles[0]['title'])
 
 	data = {
 		'query':query,

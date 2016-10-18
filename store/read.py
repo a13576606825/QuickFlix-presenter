@@ -9,6 +9,21 @@ from . import mongo
 
 log = logging.getLogger(__name__)
 
+def get_movies():
+    db = mongo.get_db()
+    movies = list(db.movies.find())
+    if movies:
+        for i, item in enumerate(movies):
+            movies[i] = item['title']
+    return movies
+
+def get_reviews(movie_title):
+    db = mongo.get_db()
+    reviews = list(db.reviews.find({"itemReviewed.name": movie_title}))
+    if not reviews:
+        log.info("No reviews found for " + str(movie_title))
+    return reviews
+
 
 def read_by_id(collection, object_id):
     if not isinstance(object_id, ObjectId):
