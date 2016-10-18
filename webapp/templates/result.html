@@ -7,7 +7,11 @@
 <div class='max-space'>
   {% if results|length>0 and isBlur %}
   <div class="alert alert-info" role="alert">
-    Note: Do you mean <strong>{{matched | e}}</strong> instead of <strong>{{query | e}}</strong>[{{similarity}}]?
+    Note: Do you mean <strong>{{rankedMovieTitles[0].title | e}}</strong> instead of <strong>{{query | e}}</strong>[{{rankedMovieTitles[0].rank}}]?
+    <br/>Here are other suggestions:
+    {% for rankedMovie in rankedMovieTitles[1:] %}
+    <a href='/result?query={{rankedMovie.title}}'>{{loop.index}}. {{rankedMovie.title | e}}[{{rankedMovie.rank | round(2) }}]</a> |
+    {% endfor %}
   </div>
   {% endif %}
   <div class='container result-space'>

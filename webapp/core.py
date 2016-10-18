@@ -8,6 +8,7 @@ def similar(a, b):
 
 
 def blur_match(query):
+
     movieTitleList = ['The Shawshank Redemption',
     'The Godfather',
     'The Godfather 2',
@@ -17,22 +18,20 @@ def blur_match(query):
     'Pulp Fiction',
     'The Lord Of The Rings: The Return Of The King']
 
-    isBlur = True
-    maxSimilarity = 0
-    matchTitle = None
+    rankedMovieTitles = []
     for title in movieTitleList:
-        curentSimilarity = similar(query, title)
-        if curentSimilarity == 1:
-            return False, title, maxSimilarity
-        elif curentSimilarity > maxSimilarity:
-            maxSimilarity = similar(query, title)
-            matchTitle = title
+        rankedMovie = {'title': title, 'rank': similar(query, title)}
+        rankedMovieTitles.append(rankedMovie)
+    def getMovieRank(movie):
+        return movie['rank']
+    rankedMovieTitles.sort(key=getMovieRank , reverse=True)
 
-    return isBlur, matchTitle, maxSimilarity
-
+    N = 5 if len(rankedMovieTitles) >= 5 else len(rankedMovieTitles)
+    isBlur = rankedMovieTitles[0]['rank'] < 1
+    return isBlur, rankedMovieTitles[:N]
 
 def retrieveResult(title):
-
+    a = {'title':'The Magnificent Seven review', 'domain':'Metacritic', 'url':"https://www.theguardian.com/film/2016/sep/22/the-magnificent-seven-review-denzel-washington", 'descripton':"Antoine Fuqua's superhero-style take on the 1960 western has a starry cast, from Denzel Washington to Ethan Hawke, but his gunslingers ..."}
     results = [
     {'title':'The Magnificent Seven review', 'domain':'Metacritic', 'url':"https://www.theguardian.com/film/2016/sep/22/the-magnificent-seven-review-denzel-washington", 'descripton':"Antoine Fuqua's superhero-style take on the 1960 western has a starry cast, from Denzel Washington to Ethan Hawke, but his gunslingers ..."},
 
@@ -40,4 +39,6 @@ def retrieveResult(title):
 
     {'title':'The Magnificent Seven review', 'domain':'Metacritic', 'url':"https://www.theguardian.com/film/2016/sep/22/the-magnificent-seven-review-denzel-washington", 'descripton':"Antoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-style take on the 1960 western has a starry cast, from Denzel Washington to Ethan Hawke, but his gunslingers ..."},
     ]
+    for i in range(10):
+        results.append(a)
     return results

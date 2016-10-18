@@ -34,15 +34,13 @@ def show_homepage():
 def show_result():
 	query = request.args.get('query').strip()
 	log.info(query)
-	isBlur, matched, similarity = core.blur_match(query)
-	results = core.retrieveResult(matched)
-
+	isBlur, rankedMovieTitles = core.blur_match(query)
+	results = core.retrieveResult(rankedMovieTitles[0])
 
 	data = {
 		'query':query,
 		'isBlur': isBlur,
-		'matched': matched,
-		'similarity': similarity,
+		'rankedMovieTitles': rankedMovieTitles,
 		'results': results,
 	}
 	return render_template('result.html', **data)
