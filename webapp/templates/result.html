@@ -25,13 +25,13 @@
               {% if results|length > 1 %}results{% else %}result{% endif %}
           </div>
           {% endif%}
-          <div onclick="go('{{result.url}}')" class='result-entry'>
-            <div class='result-header'>
+          <div  class='result-entry'>
+            <div onclick="go('{{result.url}}')" class='result-header'>
               <a href="#">
                 {{result.itemReviewed.name}} | {{result.publisher.name}}
               </a>
             </div>
-            <p>{{result.description}}</p>
+            <p>{{result.description or 'No description found'}}</p>
           </div>
         {% else %}
         <div class='empty-result'>
