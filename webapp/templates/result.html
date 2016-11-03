@@ -17,7 +17,7 @@
   {% endif %}
   <div class='container result-space'>
     <div class='row'>
-      <div class='col-lg-8 col-md-10'>
+      <div class='col-md-8'>
 
         {% for result in results %}
           {%if loop.first%}
@@ -48,8 +48,9 @@
 
         {% endfor %}
       </div>
-      <div class='col-lg-4 vert-divider info-space'>
-        <div class="panel panel-warning">
+      <div class='col-md-4 vert-divider hidden-sm hidden-xs'>
+        {%if movie_info.Director%}
+        <div class=" panel panel-warning">
           <!-- Default panel contents -->
           <div class="panel-heading"><h3>{{movie_info.key}}</h3><sub>{{movie_info.Genre}}<sub></div>
           <div class="panel-body">
@@ -74,11 +75,10 @@
               <td>{{movie_info.Rated}}</td>
             </tr>
             <tr>
-              <td>Director</td>
-              <td>{{movie_info.Director}}</td>
             </tr>
           </table>
         </div>
+        {%endif%}
 
 
       </div>
