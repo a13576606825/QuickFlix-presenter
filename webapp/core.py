@@ -1,7 +1,7 @@
 import logging
 from difflib import SequenceMatcher
 
-from store.read import get_movies, get_reviews
+from store.read import get_movies, get_reviews, get_movie_info
 
 log = logging.getLogger(__name__)
 
@@ -11,14 +11,14 @@ def similar(a, b):
 
 def blur_match(query):
 
-    movieTitleList = ['The Shawshank Redemption',
-    'The Godfather',
-    'The Godfather 2',
-    'The Dark Knight',
-    "Schindler's List",
-    '12 Angry Men',
-    'Pulp Fiction',
-    'The Lord Of The Rings: The Return Of The King']
+    # movieTitleList = ['The Shawshank Redemption',
+    # 'The Godfather',
+    # 'The Godfather 2',
+    # 'The Dark Knight',
+    # "Schindler's List",
+    # '12 Angry Men',
+    # 'Pulp Fiction',
+    # 'The Lord Of The Rings: The Return Of The King']
     movieTitleList = get_movies()
     rankedMovieTitles = []
     for title in movieTitleList:
@@ -45,3 +45,5 @@ def retrieveResult(title):
     for i in range(10):
         results.append(a)
     return results
+def retrieve_movie_info(title):
+    return get_movie_info(title)

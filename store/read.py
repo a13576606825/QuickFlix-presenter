@@ -24,6 +24,12 @@ def get_reviews(movie_title):
         log.info("No reviews found for " + str(movie_title))
     return reviews
 
+def get_movie_info(movie_title):
+    db = mongo.get_db()
+    movie_info = db.movieInfo.find_one({"key": movie_title})
+    if not movie_info:
+        log.info("No moview info found for " + str(movie_title))
+    return movie_info
 
 def read_by_id(collection, object_id):
     if not isinstance(object_id, ObjectId):

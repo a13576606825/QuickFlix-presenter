@@ -13,9 +13,6 @@ to Flask.
 import logging
 from flask import jsonify, request, redirect, Response, render_template, url_for
 
-from HTMLParser import HTMLParser
-
-
 from app import app
 import core
 
@@ -35,9 +32,13 @@ def show_result():
 	query = request.args.get('query').strip()
 	log.info(query)
 	isBlur, rankedMovieTitles = core.blur_match(query)
-	results = core.retrieveResult(rankedMovieTitles[0]['title'])
+	topTitle = rankedMovieTitles[0]['title'] if len(rankedMovieTitles) > 0 else None
+	results = core.retrieveResult(topTitle)
 
+	movie_info = core.retrieve_movie_info(topTitle)
 	data = {
+		'movie_info':movie_info,
+		'topTitle': topTitle,
 		'query':query,
 		'isBlur': isBlur,
 		'rankedMovieTitles': rankedMovieTitles,

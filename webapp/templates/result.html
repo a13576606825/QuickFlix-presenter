@@ -23,7 +23,7 @@
           {%if loop.first%}
           <div class='hori-divider'>
             Found <strong>{{results|length}}</strong>
-              {% if results|length > 1 %}results{% else %}result{% endif %}
+              {% if results|length > 1 %}results{% else %}result{% endif %} for <strong>{{topTitle}}</strong>
           </div>
           {% endif%}
           <div  class='result-entry'>
@@ -48,7 +48,39 @@
 
         {% endfor %}
       </div>
-      <div class='col-lg-4 vert-divider'>
+      <div class='col-lg-4 vert-divider info-space'>
+        <div class="panel panel-warning">
+          <!-- Default panel contents -->
+          <div class="panel-heading"><h3>{{movie_info.key}}</h3><sub>{{movie_info.Genre}}<sub></div>
+          <div class="panel-body">
+            <p>{{movie_info.Plot}}</p>
+          </div>
+          <!-- Table -->
+          <table class="table">
+            <tr>
+              <td>Runtime</td>
+              <td>{{movie_info.Runtime}}</td>
+            </tr>
+            <tr>
+              <td>Director</td>
+              <td>{{movie_info.Director}}</td>
+            </tr>
+            <tr>
+              <td>Actors</td>
+              <td>{{movie_info.Actors}}</td>
+            </tr>
+            <tr>
+              <td>Rated</td>
+              <td>{{movie_info.Rated}}</td>
+            </tr>
+            <tr>
+              <td>Director</td>
+              <td>{{movie_info.Director}}</td>
+            </tr>
+          </table>
+        </div>
+
+
       </div>
     </div>
   </div>

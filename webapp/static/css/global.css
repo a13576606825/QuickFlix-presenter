@@ -138,6 +138,9 @@ html, body{
 .result-entry {
 	padding-top: 20px;
 }
+.info-space {
+	height: 100%;
+}
 
 .empty-result {
 	font-size: 18px
