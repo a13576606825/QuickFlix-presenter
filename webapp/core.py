@@ -1,24 +1,28 @@
+"""
+Core: Implements all core functions required
+~~~
+"""
 import logging
 from difflib import SequenceMatcher
 
 from store.read import get_movies, get_reviews, get_movie_info
 
+
 log = logging.getLogger(__name__)
 
+BLUR_MATCH_NUMBER = 5
+
 def similar(a, b):
+    '''
+    compare similarity of two string
+    '''
     return SequenceMatcher(None, a, b).ratio()
 
 
 def blur_match(query):
-
-    # movieTitleList = ['The Shawshank Redemption',
-    # 'The Godfather',
-    # 'The Godfather 2',
-    # 'The Dark Knight',
-    # "Schindler's List",
-    # '12 Angry Men',
-    # 'Pulp Fiction',
-    # 'The Lord Of The Rings: The Return Of The King']
+    '''
+    find the most N similar movies in dbs
+    '''
     movieTitleList = get_movies()
     rankedMovieTitles = []
     for title in movieTitleList:
@@ -28,22 +32,21 @@ def blur_match(query):
         return movie['rank']
     rankedMovieTitles.sort(key=getMovieRank , reverse=True)
 
-    N = 5 if len(rankedMovieTitles) >= 5 else len(rankedMovieTitles)
+    N = BLUR_MATCH_NUMBER if len(rankedMovieTitles) >= BLUR_MATCH_NUMBER else len(rankedMovieTitles)
     isBlur = rankedMovieTitles[0]['rank'] < 1
     return isBlur, rankedMovieTitles[:N]
 
 def retrieveResult(title):
-    a = {'title':'The Magnificent Seven review', 'domain':'Metacritic', 'url':"https://www.theguardian.com/film/2016/sep/22/the-magnificent-seven-review-denzel-washington", 'descripton':"Antoine Fuqua's superhero-style take on the 1960 western has a starry cast, from Denzel Washington to Ethan Hawke, but his gunslingers ..."}
-    results = [
-    {'title':'The Magnificent Seven review', 'domain':'Metacritic', 'url':"https://www.theguardian.com/film/2016/sep/22/the-magnificent-seven-review-denzel-washington", 'descripton':"Antoine Fuqua's superhero-style take on the 1960 western has a starry cast, from Denzel Washington to Ethan Hawke, but his gunslingers ..."},
-
-    {'title':'The Magnificent Seven review', 'domain':'Metacritic', 'url':"https://www.theguardian.com/film/2016/sep/22/the-magnificent-seven-review-denzel-washington", 'descripton':"Antoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-style take on the 1960 western has a starry cast, from Denzel Washington to Ethan Hawke, but his gunslingers ..."},
-
-    {'title':'The Magnificent Seven review', 'domain':'Metacritic', 'url':"https://www.theguardian.com/film/2016/sep/22/the-magnificent-seven-review-denzel-washington", 'descripton':"Antoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-stylAntoine Fuqua's superhero-style take on the 1960 western has a starry cast, from Denzel Washington to Ethan Hawke, but his gunslingers ..."},
-    ]
+    '''
+    retrieve movie review results by a movie title
+    '''
     return get_reviews(title)
     for i in range(10):
         results.append(a)
     return results
+
 def retrieve_movie_info(title):
+    '''
+    retrieve movie info by a movie title
+    '''
     return get_movie_info(title)

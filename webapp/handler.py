@@ -1,13 +1,9 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 """
-App
+Handler:  defined end points
 ~~~
 
-The Flask's `app` instance is initialized in this module.
-
-Currently, the configuration is simple. We don't need to set any custom configuration
-to Flask.
 """
 
 import logging
