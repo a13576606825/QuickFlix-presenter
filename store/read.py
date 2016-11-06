@@ -27,9 +27,10 @@ def get_reviews(movie_title):
 def get_movie_info(movie_title):
     db = mongo.get_db()
     movie_info = db.movies.find_one({"title": movie_title})
-    if not movie_info['info']:
+    if not movie_info or not movie_info['info']:
         log.info("No moview info found for " + str(movie_title))
-    movie_info['info']['key'] = movie_title    
+        return None
+    movie_info['info']['key'] = movie_title
     return movie_info['info']
 
 def read_by_id(collection, object_id):

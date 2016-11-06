@@ -29,10 +29,12 @@ def show_result():
 	log.info(query)
 	isBlur, rankedMovieTitles = core.blur_match(query)
 	topTitle = rankedMovieTitles[0]['title'] if len(rankedMovieTitles) > 0 else None
+	isDbEmpty = topTitle is None
 	results = core.retrieveResult(topTitle)
 
 	movie_info = core.retrieve_movie_info(topTitle)
 	data = {
+		'isDbEmpty': isDbEmpty,
 		'movie_info':movie_info,
 		'topTitle': topTitle,
 		'query':query,
